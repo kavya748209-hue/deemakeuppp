@@ -890,8 +890,8 @@ function Footer(){
               <img src={logo} alt="Dee Logo" style={{width:48,height:48,borderRadius:'50%',objectFit:'cover',
                 boxShadow:`0 4px 16px rgba(201,168,76,.4)`}}/>
               <div>
-                <div style={{fontFamily:"'Playfair Display',serif",fontSize:'1.5rem',fontWeight:800,color:T.gold3,lineHeight:1.1}}>Dee</div>
-                <div style={{fontFamily:"'Poppins',sans-serif",fontSize:'0.5rem',letterSpacing:'.2em',color:T.gold,fontWeight:700}}>MAKEUP STUDIO</div>
+                <div style={{fontFamily:"'Playfair Display',serif",fontSize:'1.5rem',fontWeight:800,color:T.gold3,lineHeight:1.1}}>Dee MAKEUP STUDIO</div>
+                <div style={{fontFamily:"'Poppins',sans-serif",fontSize:'0.5rem',letterSpacing:'.2em',color:T.gold,fontWeight:700}}></div>
               </div>
             </div>
             <p className="text-xs leading-relaxed mb-6" style={{fontFamily:"'Poppins',sans-serif",color:'rgba(239,228,208,.35)'}}>
