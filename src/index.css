@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&display=swap');
+@import 'tailwindcss';
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #FAF3E3; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#C9A84C, #8B6914);
+  border-radius: 10px;
+}
+
+/* ── DESIGN TOKENS ── */
+:root {
+  --ivory:   #FDF8F0;
+  --cream:   #FAF3E3;
+  --beige:   #EFE4D0;
+  --beige2:  #E0CDB4;
+  --taupe:   #8B7D6B;
+  --taupe2:  #6B5D4F;
+  --espresso:#3D2314;
+  --brown:   #5C3317;
+  --gold:    #C9A84C;
+  --gold2:   #D4AF37;
+  --gold3:   #E8CC6A;
+  --gold4:   #F5E6A3;
+  --gold-dk: #8B6914;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--ivory);
+  overflow-x: hidden;
+  color: var(--espresso);
+}
+
+/* ── GOLD BALL KEYFRAMES ── */
+@keyframes orbit1 {
+  0%   { transform: translate(0,0)      rotateY(0deg)   scale(1); }
+  25%  { transform: translate(28px,-42px) rotateY(90deg)  scale(1.07); }
+  50%  { transform: translate(-18px,-24px) rotateY(180deg) scale(.95); }
+  75%  { transform: translate(38px,-58px) rotateY(270deg) scale(1.04); }
+  100% { transform: translate(0,0)      rotateY(360deg) scale(1); }
+}
+@keyframes orbit2 {
+  0%   { transform: translate(0,0)      scale(1); }
+  33%  { transform: translate(-32px,-52px) scale(1.1); }
+  66%  { transform: translate(22px,-28px) scale(.9); }
+  100% { transform: translate(0,0)      scale(1); }
+}
+@keyframes orbit3 {
+  0%,100% { transform: translateY(0)    scale(1); }
+  50%      { transform: translateY(-48px) scale(1.1); }
+}
+@keyframes drift {
+  0%,100% { transform: translate(0,0); }
+  20%  { transform: translate(18px,-28px); }
+  40%  { transform: translate(-14px,-48px); }
+  60%  { transform: translate(32px,-18px); }
+  80%  { transform: translate(-22px,-38px); }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes goldShimmer {
+  0%,100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+@keyframes shimmerText {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes heroFloat {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-14px) rotate(1.2deg); }
+}
+@keyframes ringRotate  { from { transform: rotate(0deg);   } to { transform: rotate(360deg);  } }
+@keyframes ringRotate2 { from { transform: rotate(180deg); } to { transform: rotate(-180deg); } }
+@keyframes pulseGold {
+  0%,100% { box-shadow: 0 0 22px rgba(201,168,76,.45), 0 0 55px rgba(201,168,76,.2); }
+  50%      { box-shadow: 0 0 44px rgba(201,168,76,.8),  0 0 90px rgba(201,168,76,.4); }
+}
+@keyframes fadeUp   { from { opacity:0; transform:translateY(60px) scale(.96); } to { opacity:1; transform:none; } }
+@keyframes slideLeft{ from { opacity:0; transform:translateX(-60px) perspective(800px) rotateY(-10deg); } to { opacity:1; transform:none; } }
+@keyframes slideRight{ from { opacity:0; transform:translateX(60px) perspective(800px) rotateY(10deg); } to { opacity:1; transform:none; } }
+@keyframes zoomIn   { from { opacity:0; transform:scale(.78) translateY(28px); } to { opacity:1; transform:none; } }
+@keyframes flipIn   { from { opacity:0; transform:perspective(700px) rotateX(28deg) translateY(38px); } to { opacity:1; transform:none; } }
+@keyframes spinIn   { from { opacity:0; transform:rotate(-18deg) scale(.84); } to { opacity:1; transform:none; } }
+
+/* ── GOLD BALL ── */
+.gold-ball {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(circle at 30% 30%,
+    #F5E6A3 0%, #D4AF37 30%, #C9A84C 60%, #8B6914 100%);
+  box-shadow:
+    inset -5px -5px 12px rgba(0,0,0,.22),
+    inset  5px  5px 12px rgba(255,240,180,.4),
+    0 10px 36px rgba(201,168,76,.45);
+}
+
+/* ── SCROLL REVEAL ── */
+.sr { opacity:0; transition: opacity .9s ease, transform .9s ease; }
+.sr.up    { transform: translateY(60px) scale(.97); }
+.sr.left  { transform: translateX(-60px) perspective(800px) rotateY(-10deg); }
+.sr.right { transform: translateX(60px) perspective(800px) rotateY(10deg); }
+.sr.zoom  { transform: scale(.78) translateY(28px); }
+.sr.flip  { transform: perspective(700px) rotateX(28deg) translateY(38px); }
+.sr.spin  { transform: rotate(-18deg) scale(.84); }
+.sr.visible { opacity:1 !important; transform: none !important; }
+
+/* ── GRADIENT TEXT ── */
+.gold-text {
+  background: linear-gradient(135deg, #8B6914 0%, #C9A84C 35%, #E8CC6A 55%, #D4AF37 75%, #8B6914 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmerText 5s linear infinite;
+}
+
+/* ── GLASS CARD ── */
+.gc {
+  background: rgba(253,248,240,.72);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(201,168,76,.22);
+}
+
+/* ── GOLD SHADOW ── */
+.gs { box-shadow: 0 22px 65px rgba(201,168,76,.22), 0 5px 22px rgba(201,168,76,.12); }
+
+/* ── HERO RINGS ── */
+.ring-a {
+  position: absolute; border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 60%, rgba(201,168,76,.55) 75%, transparent 85%);
+  animation: ringRotate 9s linear infinite;
+}
+.ring-b {
+  position: absolute; border-radius: 50%;
+  background: conic-gradient(from 180deg, transparent 65%, rgba(232,204,106,.4) 80%, transparent 90%);
+  animation: ringRotate2 13s linear infinite;
+}
+
+/* ── HERO IMAGE ── */
+.hero-img { animation: heroFloat 6.5s ease-in-out infinite; }
+
+/* ── FAB ── */
+.fab { transition: transform .3s ease; animation: pulseGold 2.5s ease-in-out infinite; }
+.fab:hover { transform: scale(1.13) rotate(-5deg); }
+
+/* ── DIVIDER LINE ── */
+.gold-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,.6), transparent);
+}
